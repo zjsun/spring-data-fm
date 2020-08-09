@@ -14,6 +14,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Embedded;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serializable;
@@ -32,7 +33,7 @@ public class User implements Serializable {
     @ApiModel("性别")
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     @Getter
-    public enum Gender implements LabeledValue {
+    public enum Gender implements LabeledValue<Integer> {
         UNKNOWN(0, "未知"), MALE(1, "男"), FEMALE(2, "女");
 
         private Integer value;
@@ -69,6 +70,10 @@ public class User implements Serializable {
     public void setGender(Gender gender) {
         this.gender = gender == null ? 0 : gender.value;
     }
+
+    @ApiModelProperty("联系方式")
+    @Embedded.Empty(prefix = "contact_")
+    private Contact contact;
 
     @ApiModelProperty("创建时间")
     @CreatedDate

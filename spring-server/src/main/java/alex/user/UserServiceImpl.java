@@ -31,6 +31,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<User> query(UserQuery query, Pageable pageable) {
-        return new PageImpl<>(userRepo.findByNameLikeOrderById(query.getQ(), pageable), pageable, userRepo.countByNameLike(query.getQ()));
+        return new PageImpl<>(userRepo.findByNameContainingOrderById(query.getQ(), pageable), pageable, userRepo.countByNameContaining(query.getQ()));
     }
 }

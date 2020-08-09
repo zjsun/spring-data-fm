@@ -18,4 +18,6 @@ public class UserQuery implements Serializable {
      * keyword for search
      */
     private String q;
+
+    private User.Gender gender;
 }

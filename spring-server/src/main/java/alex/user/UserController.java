@@ -37,7 +37,7 @@ public class UserController {
     @GetMapping("/query")
     public JsonResult<Page<User>> query(@RequestParam(required = false, defaultValue = "") String name, @ApiIgnore Pageable pageable) {
         UserQuery query = new UserQuery();
-        query.setQ("%" + StringUtils.defaultString(name) + "%");
+        query.setQ(StringUtils.defaultString(name));
         return JsonResult.data(userService.query(query, pageable));
     }
 }
