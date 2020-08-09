@@ -10,7 +10,7 @@
 
     <name>${project.artifactId}</name>
     <description>A freemarker extension for spring-data to solve complex query scenarios.</description>
-    <url>https://github.com/zjsun/spring-jpa-fm</url>
+    <url>https://github.com/zjsun/spring-data-fm</url>
     <inceptionYear>2020</inceptionYear>
 
     <parent>
@@ -34,6 +34,11 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>2.0.4</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
