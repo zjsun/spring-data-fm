@@ -1,4 +1,4 @@
-package alex;
+package alex.config;
 
 import alex.util.Version;
 import com.fasterxml.classmate.ResolvedType;
@@ -102,8 +102,8 @@ public class Swagger {
                                 Pageable.class.getPackage().getName(),
                                 Pageable.class.getSimpleName()))
                 .withProperties(newArrayList(
-                        property(Integer.class, "pi", "Page Index (zero based)"),
-                        property(Integer.class, "ps", "Page Size")
+                        property(Integer.class, "pi", "页码(0开始)"),
+                        property(Integer.class, "ps", "分页大小")
                 ))
                 .build();
     }

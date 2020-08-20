@@ -1,14 +1,13 @@
 package alex.user;
 
-import alex.JsonResult;
+import alex.type.JsonResult;
+import alex.type.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * @author Alex.Sun
@@ -35,9 +34,9 @@ public class UserController {
 
     @ApiOperation("Query")
     @GetMapping("/query")
-    public JsonResult<Page<User>> query(@RequestParam(required = false, defaultValue = "") String name, @ApiIgnore Pageable pageable) {
+    public JsonResult<Page<User>> query(@RequestParam(required = false, defaultValue = "") String name, Pageable pageable) {
         UserQuery query = new UserQuery();
         query.setQ(StringUtils.defaultString(name));
-        return JsonResult.data(userService.query(query, pageable));
+        return JsonResult.page(userService.query(query, pageable));
     }
 }

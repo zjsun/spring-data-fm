@@ -1,7 +1,7 @@
 package alex.user;
 
-import alex.util.LabeledValue;
-import alex.util.Valued;
+import alex.type.LabeledValue;
+import alex.type.Valued;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

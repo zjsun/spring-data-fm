@@ -1,4 +1,4 @@
-package alex;
+package alex.type;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -45,6 +45,10 @@ public class JsonResult<T> implements Serializable {
 
     public static <T> JsonResult<T> data(T data) {
         return JsonResult.<T>builder().code(OK).data(data).build();
+    }
+
+    public static <T> JsonResult<Page<T>> page(org.springframework.data.domain.Page<T> page){
+        return JsonResult.<Page<T>>builder().code(OK).data(Page.of(page)).build();
     }
 
     //TODO: JsonResult.page()

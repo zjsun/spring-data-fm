@@ -1,4 +1,4 @@
-package alex.util;
+package alex.type;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;

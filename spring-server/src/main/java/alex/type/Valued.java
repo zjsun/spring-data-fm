@@ -1,4 +1,4 @@
-package alex.util;
+package alex.type;
 
 import io.swagger.annotations.ApiModelProperty;
 
