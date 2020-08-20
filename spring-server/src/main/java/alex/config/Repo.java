@@ -1,5 +1,6 @@
 package alex.config;
 
+import alex.util.Snowflake;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
@@ -19,19 +20,17 @@ import org.springframework.util.ReflectionUtils;
 @EnableJdbcAuditing
 public class Repo {
 
-    // only for test
-    private int count = 100;
-
     @Bean
     public ApplicationListener<BeforeSaveEvent> idGenerator() {
         return event -> {
             Object entity = event.getEntity();
             ReflectionUtils.doWithFields(entity.getClass(), field -> {
                 ReflectionUtils.makeAccessible(field);
-                if (field.isAnnotationPresent(Id.class) && field.getType().isAssignableFrom(long.class)) {
-                    long id = (long) field.get(entity);
-                    if (id == 0)
-                        field.set(entity, count++);
+                if (field.isAnnotationPresent(Id.class)) {
+                    if ((field.getType().isAssignableFrom(long.class) && (long) field.get(entity) == 0)
+                            || (field.getType().isAssignableFrom(Long.class) && (field.get(entity) == null || ((Long) field.get(entity)).longValue() == 0))) {
+                        field.set(entity, Snowflake.DEFAULT.nextId());
+                    }
                 }
             });
         };

@@ -1,6 +1,7 @@
 package alex.type;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -57,5 +58,17 @@ public class Page<T> implements Serializable {
     @ApiModelProperty("分页大小")
     public int getPageSize() {
         return page.getSize();
+    }
+
+    @ApiModelProperty("是否有下一页")
+    @JsonProperty("hasNext")
+    public boolean hasNext() {
+        return page.hasNext();
+    }
+
+    @ApiModelProperty("是否有上一页")
+    @JsonProperty("hasPrevious")
+    public boolean hasPrevious() {
+        return page.hasPrevious();
     }
 }
